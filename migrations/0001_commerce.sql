@@ -4,8 +4,8 @@ CREATE TABLE inventory (product_id TEXT PRIMARY KEY, available INTEGER CHECK(ava
 CREATE TABLE orders (id TEXT PRIMARY KEY, request_key TEXT UNIQUE NOT NULL, fingerprint TEXT NOT NULL, token_hash TEXT NOT NULL, email TEXT NOT NULL, snapshot TEXT NOT NULL CHECK(json_valid(snapshot)), total_cents INTEGER NOT NULL CHECK(total_cents>0), due_cents INTEGER NOT NULL CHECK(due_cents>0), paid_cents INTEGER NOT NULL DEFAULT 0, refunded_cents INTEGER NOT NULL DEFAULT 0, payment_status TEXT NOT NULL DEFAULT 'awaiting_payment', fulfilment_status TEXT NOT NULL DEFAULT 'awaiting_confirmation', reservation_state TEXT NOT NULL DEFAULT 'held' CHECK(reservation_state IN ('held','captured','released')), created_at INTEGER NOT NULL, updated_at INTEGER NOT NULL);
 CREATE TABLE order_lines (order_id TEXT NOT NULL REFERENCES orders(id), product_id TEXT NOT NULL REFERENCES inventory(product_id), quantity INTEGER NOT NULL CHECK(quantity>0), revision INTEGER NOT NULL, PRIMARY KEY(order_id,product_id));
 CREATE TRIGGER reserve_stock BEFORE INSERT ON order_lines BEGIN
- SELECT CASE WHEN NOT EXISTS(SELECT 1 FROM catalogue WHERE id=NEW.product_id AND revision=NEW.revision AND json_extract(body,'$.enabled')=1) THEN RAISE(ABORT,'stale_catalogue') END;
- SELECT CASE WHEN (SELECT available FROM inventory WHERE product_id=NEW.product_id) < NEW.quantity THEN RAISE(ABORT,'insufficient_stock') END;
+ SELECT RAISE(ABORT,'stale_catalogue') WHERE NOT EXISTS(SELECT 1 FROM catalogue WHERE id=NEW.product_id AND revision=NEW.revision AND json_extract(body,'$.enabled')=1);
+ SELECT RAISE(ABORT,'insufficient_stock') WHERE (SELECT available FROM inventory WHERE product_id=NEW.product_id) < NEW.quantity;
  UPDATE inventory SET available=available-NEW.quantity WHERE product_id=NEW.product_id AND available IS NOT NULL;
 END;
 CREATE TRIGGER release_stock AFTER UPDATE OF reservation_state ON orders WHEN OLD.reservation_state='held' AND NEW.reservation_state='released' BEGIN
