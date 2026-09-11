@@ -6,3 +6,6 @@
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 
 .mobile-nav-link{display:none}@media(max-width:900px){nav.open .mobile-nav-link{display:block}}
+
+/* Approved logo, preserved without altering the supplied image. */
+.brand{flex-shrink:0}.brand .logo-crop{display:block;position:relative;width:280px;height:52px;overflow:hidden}.brand .logo-crop img{position:absolute;width:108.5%;max-width:none;height:auto;left:-5%;top:-30px}.brand.inverse{background:#fff;padding:14px 16px;border-radius:3px;width:max-content;max-width:100%}.brand.inverse .logo-crop{width:280px;height:52px}@media(max-width:1200px){.header .brand .logo-crop{width:240px;height:46px}.header .brand .logo-crop img{top:-26px}}@media(max-width:650px){.header .brand .logo-crop{width:225px;height:44px}.header .brand .logo-crop img{top:-24px}.brand.inverse .logo-crop{width:250px;height:48px}.brand.inverse .logo-crop img{top:-27px}}
