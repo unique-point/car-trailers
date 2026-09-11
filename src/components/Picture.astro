@@ -1,0 +1,6 @@
+---
+interface Props { name:string; alt:string; hero?:boolean; class?:string; }
+const {name,alt,hero=false,class:className=''}=Astro.props;
+const banner=name==='headquarters';
+---
+<img class={className} src={`/images/${name}-960.webp`} srcset={`/images/${name}-480.webp 480w, /images/${name}-960.webp 960w, /images/${name}-1536.webp 1536w`} sizes={hero?'100vw':'(max-width: 650px) 100vw, (max-width: 1000px) 50vw, 33vw'} width={banner?1983:1536} height={banner?793:1024} alt={alt} loading={hero?'eager':'lazy'} fetchpriority={hero?'high':'auto'} decoding="async" />

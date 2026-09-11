@@ -1,0 +1,35 @@
+{
+  "name": "car-trailers-australia",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "engines": {
+    "node": ">=22.12.0"
+  },
+  "scripts": {
+    "dev": "astro dev --host 0.0.0.0 --port 4173",
+    "build": "astro build",
+    "preview": "wrangler dev",
+    "check": "astro check",
+    "test": "node --import tsx --test tests/*.test.ts",
+    "db:local": "wrangler d1 migrations apply DB --local",
+    "deploy": "wrangler deploy",
+    "images": "node scripts/images.mjs"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@astrojs/cloudflare": "^14.3.1",
+    "astro": "^7.3.2",
+    "jose": "^6.2.12",
+    "stripe": "^22.6.2",
+    "typescript": "^6.0.3",
+    "zod": "^4.6.1"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^5.20260910.1",
+    "@types/node": "^22.20.2",
+    "sharp": "^0.35.4",
+    "tsx": "^4.23.13",
+    "wrangler": "^4.131.0"
+  }
+}

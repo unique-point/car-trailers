@@ -1,0 +1,9 @@
+---
+import Picture from './Picture.astro';
+import {categories,type Product} from '../data/catalogue';
+const {product:p}=Astro.props as {product:Product};
+---
+<article class="product-card" data-product={p.id} data-category={p.category} data-search={`${p.name} ${p.description} ${p.pictured.join(' ')}`.toLowerCase()}>
+ <a class="product-photo" href={`/trailers/${p.slug}/`}><Picture name={p.images[0]} alt={`${p.name}, illustrative trailer design`}/><span class="photo-link" aria-hidden="true">↗</span></a>
+ <div class="product-copy"><p class="eyebrow">{categories.find(c=>c.slug===p.category)?.name}</p><h3><a href={`/trailers/${p.slug}/`}>{p.name}</a></h3><p class="muted">{p.pictured.slice(0,2).join(' · ')}</p><div class="card-bottom"><a class="text-link" href={`/trailers/${p.slug}/`}>Explore & enquire <span aria-hidden="true">→</span></a><button class="compare-add subtle" data-id={p.id} aria-label={`Compare ${p.name}`}>Compare +</button></div></div>
+</article>

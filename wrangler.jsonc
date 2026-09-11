@@ -1,0 +1,12 @@
+{
+ "$schema":"node_modules/wrangler/config-schema.json",
+ "name":"car-trailers-australia-preview",
+ "main":"src/worker.ts",
+ "compatibility_date":"2026-09-01",
+ "compatibility_flags":["nodejs_compat"],
+ "assets":{"binding":"ASSETS","directory":"./dist"},
+ "d1_databases":[{"binding":"DB","database_name":"car-trailers-preview","database_id":"00000000-0000-0000-0000-000000000000","migrations_dir":"migrations"}],
+ "vars":{"APP_ENV":"preview","APP_ORIGIN":"http://terminal.local:4173","COMMERCE_ENABLED":"false","ENQUIRIES_ENABLED":"false","NOTIFICATIONS_ENABLED":"false","INDEXING_ENABLED":"false"},
+ "triggers":{"crons":["*/10 * * * *"]},
+ "observability":{"enabled":true,"head_sampling_rate":0.1}
+}

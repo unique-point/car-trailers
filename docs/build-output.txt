@@ -1,0 +1,57 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> car-trailers-australia@0.1.0 build
+> astro build
+
+▲ [WARNING] Proxy environment variables detected. We'll use your proxy for fetch requests.
+
+
+02:20:40 [@astrojs/cloudflare] Enabling compile-time image optimization. Images will be pre-optimized at build time.
+02:20:40 [@astrojs/cloudflare] Enabling sessions with Cloudflare KV with the "SESSION" KV binding.
+02:20:40 [types] Generated 106ms
+02:20:40 [build] output: "server"
+02:20:40 [build] mode: "server"
+02:20:40 [build] directory: /workspace/scratch/b19472575e3a/car-trailers-australia/dist/
+02:20:40 [build] adapter: @astrojs/cloudflare
+02:20:40 [build] Collecting build info...
+02:20:40 [build] ✓ Completed in 307ms.
+02:20:40 [build] Building server entrypoints...
+02:20:41 [vite] ✓ built in 632ms
+02:20:42 [vite] ✓ built in 892ms
+02:20:42 [vite] ✓ built in 119ms
+
+ prerendering static routes 
+02:20:42   ├─ /404.html (+74ms) 
+02:20:42   ├─ /about/index.html (+7ms) 
+02:20:42   ├─ /cart/index.html (+4ms) 
+02:20:42   ├─ /checkout/index.html (+3ms) 
+02:20:42   ├─ /compare/index.html (+3ms) 
+02:20:42   ├─ /contact/index.html (+3ms) 
+02:20:42   ├─ /delivery/index.html (+3ms) 
+02:20:42   ├─ /faq/index.html (+3ms) 
+02:20:42   ├─ /gardening/index.html (+4ms) 
+02:20:42   ├─ /order/index.html (+3ms) 
+02:20:42   ├─ /payment-cancelled/index.html (+3ms) 
+02:20:42   ├─ /privacy/index.html (+2ms) 
+02:20:42   ├─ /quote/index.html (+3ms) 
+02:20:42   ├─ /returns/index.html (+2ms) 
+02:20:42   ├─ /shop/index.html (+5ms) 
+02:20:42   ├─ /sitemap.xml (+2ms) 
+02:20:42   ├─ /support/index.html (+2ms) 
+02:20:42   ├─ /terms/index.html (+2ms) 
+02:20:42   ├─ /trailers/car-transporter/index.html (+4ms) 
+02:20:42   ├─ /trailers/compact-box/index.html (+2ms) 
+02:20:42   ├─ /trailers/enclosed-trailer/index.html (+2ms) 
+02:20:42   ├─ /trailers/gardening-trailer/index.html (+2ms) 
+02:20:42   ├─ /trailers/trades-trailer/index.html (+2ms) 
+02:20:42   ├─ /trailers/ramp-cage-trailer/index.html (+2ms) 
+02:20:42   ├─ /trailers/high-cage-trailer/index.html (+2ms) 
+02:20:42   ├─ /trailers/single-axle-cage/index.html (+2ms) 
+02:20:42   ├─ /index.html (+3ms) 
+02:20:42 ✓ Completed in 198ms.
+
+02:20:42 [build] Rearranging server assets...
+02:20:42 [build] ✓ Completed in 1.95s.
+02:20:42 [@astrojs/cloudflare] Injected immutable Cache-Control for /_astro/* into _headers.
+02:20:42 [build] Server built in 2.26s
+02:20:42 [build] Complete!

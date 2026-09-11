@@ -1,0 +1,114 @@
+[
+  {
+    "asset": "car-transporter",
+    "source": "exec-0d7f18d3-8f95-4127-bf6f-27bc6a5cbf04.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "c67815cf36997fe90b56dc79acb8856e2fe31f1526f9581c53ce46e2502eb9d7",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "compact-box",
+    "source": "exec-4ef26869-ea27-49a0-836e-a8b9f6a31bf0.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "b92e4acd19b12ee539d506812c978b3c82f269c7cad5917887538f551b3fbd4d",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "enclosed-closed",
+    "source": "exec-921c59c3-f0d3-48b8-847b-0e16e40e2704.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "b9346d0428224ba615032dc38ce76bc17508c7c202d455934cc9e2fdd1337c0c",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "enclosed-open",
+    "source": "exec-119faee9-6faa-4cff-b0c2-5ddc1670798e.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "9d7198f76a83c3e236c330d0c4d181a30757e25617c7f14a9260d61bed3d7b3b",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "enclosed-side",
+    "source": "exec-2e39086e-fcf2-4d37-814b-1fb712bf8cad.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "faa3a5055b4d579f4b91fca95a5096e861b68d629cf095ad33573f7c393de907",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "silver-trades",
+    "source": "exec-0d5b85ab-f340-4ce1-acfa-b21b1ad7c97e.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "80d0f757a93ab4ccc5a4d2a46818bfd49b9bc63fab3b58bb9cef75ea12702947",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "black-trades",
+    "source": "exec-edf01e05-307f-452b-8495-6d5ea8040e52.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "32c05d126409ada0ebfd1292d8fe5a34eec487fb4e675e3c79123aff9167c47e",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "cage-ramps",
+    "source": "exec-e3c6c5c7-352b-446f-9f3d-c0f5f95f764b.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "f1cf1ab3f050fe2e1c3010d51ef6d8f066310a08f0da08342721ca51d42cc802",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "black-front-locker",
+    "source": "exec-a8b77607-0b65-4802-acdb-54c060ad48bf.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "a44f86cdefcd5e13c3cb887185050d221b907da4c2e58d133aa6c0a493541f54",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "cage-closed",
+    "source": "exec-0a45df59-d1af-46b2-829d-b97bf66f9ca8.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "72707300a4207a3d9b997e30ab48831d15623e170018e7015b799c3844836cd2",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "high-cage-rear",
+    "source": "exec-96e3abd5-8e91-437a-bdab-822586dd700e.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "ad63e7e9411f8aa06656a07709bb9da32f8413d34cf5c979a8a11eaf901f6ec4",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "high-cage-front",
+    "source": "exec-1485db85-ac65-4c3d-a72a-8e98897b677a.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "e9f021a4b48511156b03ce43b0c6f697a7a879896fc5461023762bae93b20016",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "single-cage",
+    "source": "exec-e9cd8ec8-5261-4cc4-bb3b-f90052cef213.png",
+    "width": 1536,
+    "height": 1024,
+    "sha256": "da542327357928941586e81142e0fb2685b6693135d07e78b76f37e672da3776",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  },
+  {
+    "asset": "headquarters",
+    "source": "car_trailers_banner.png",
+    "width": 1983,
+    "height": 793,
+    "sha256": "9c08e9860a121b6f988dc88c45edbef997b53e70c59ec6f1a778f9ed65d9cd6a",
+    "status": "concept illustration; specification and equipment inclusion unconfirmed"
+  }
+]

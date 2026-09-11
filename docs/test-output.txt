@@ -1,0 +1,31 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> car-trailers-australia@0.1.0 test
+> node --import tsx --test tests/*.test.ts
+
+✔ full payment includes itemised extras and collection in exact AUD cents (15.278147ms)
+✔ approved percentage deposit applies to complete configured line (0.708233ms)
+✔ fixed deposit multiplies per trailer and never silently becomes full payment (1.095171ms)
+✔ manipulated total, stale revision, unknown and incompatible options are rejected (0.91945ms)
+✔ unconfirmed freight and disabled products cannot be charged (1.077915ms)
+✔ Stripe session creation reserves inventory and immutable configuration, cookie protects order (62.196243ms)
+✔ duplicate payment notifications produce one settled payment and one outbox receipt (9.636805ms)
+✔ expired unpaid sessions release stock exactly once (9.633438ms)
+✔ signature validation rejects forged callbacks, and stale event uses current Stripe state (13.734429ms)
+✔ session amount mismatch never marks order paid (5.909769ms)
+✔ simultaneous attempts for the final unit cannot oversell (6.783317ms)
+✔ same checkout request reuses order and Stripe session (7.804231ms)
+✔ quote capture is durable and disabled launch gate rejects external data (5.218227ms)
+✔ staff API has no fallback identity or unverified header bypass (1.892661ms)
+✔ refund notifications are recorded once without silently restocking (6.656807ms)
+✔ balance settlement completes a deposit order without reserving stock twice (7.031715ms)
+✔ replayed successful payment after refund preserves the refund status (5.841761ms)
+✔ partial reservation failure rolls back every item and the draft order (3.231552ms)
+ℹ tests 18
+ℹ suites 0
+ℹ pass 18
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1408.086224
