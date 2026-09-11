@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: [.github/workflows/first-cloudflare-deploy.yml]
+    paths: [.github/workflows/first-cloudflare-deploy.yml, migrations/0001_commerce.sql]
 permissions:
   contents: read
   statuses: write
