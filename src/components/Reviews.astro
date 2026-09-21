@@ -1,0 +1,4 @@
+---
+import {reviews} from '../data/storefront';
+---
+{reviews.length>0&&<section class="section wrap" id="reviews"><div class="section-heading"><div><p class="eyebrow">CUSTOMER EXPERIENCES</p><h2>From our customers.</h2></div><div class="review-controls"><button data-review-prev aria-label="Previous review">←</button><button data-review-next aria-label="Next review">→</button></div></div><div class="review-track">{reviews.map(r=><article class="review-card"><p aria-label={`${r.rating} out of 5 stars`}>{'★'.repeat(r.rating)}</p><blockquote>{r.quote}</blockquote><strong>{r.name}</strong><a href={r.sourceUrl} target="_blank" rel="noopener noreferrer">Read original review →</a></article>)}</div></section>}

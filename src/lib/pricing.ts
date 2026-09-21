@@ -1,12 +1,14 @@
 import {z} from 'zod';
 import {HttpError} from './http';
+import {collectionOptions} from './collection-options';
+const collectionSchema=z.object({id:z.string().min(1),name:z.string().min(1),feeCents:z.number().int().nonnegative()});
 export const commercialSchema=z.object({
  id:z.string().min(1).max(80),revision:z.number().int().positive(),name:z.string().min(1).max(160),
  enabled:z.boolean(),priceCents:z.number().int().min(1).max(100000000),taxIncluded:z.literal(true),
  stock:z.number().int().nonnegative().nullable(),leadTime:z.string().max(200),
  deposit:z.discriminatedUnion('type',[z.object({type:z.literal('none')}),z.object({type:z.literal('percent'),basisPoints:z.number().int().min(1).max(9999)}),z.object({type:z.literal('fixed'),cents:z.number().int().positive()})]),
  options:z.array(z.object({id:z.string().max(60),name:z.string().max(160),priceCents:z.number().int().nonnegative(),excludes:z.array(z.string())})).max(50),
- collection:z.object({id:z.string().min(1),name:z.string().min(1),feeCents:z.number().int().nonnegative()}),
+ collection:collectionSchema,collections:z.array(collectionSchema).max(20).optional(),
  specifications:z.record(z.string(),z.string()),approvedBy:z.string().min(1),
 });
 export type Commercial=z.infer<typeof commercialSchema>;
@@ -17,18 +19,18 @@ export function priceOrder(input:CheckoutInput,catalogue:Commercial[]){
  const lines=input.items.map(item=>{
   const product=catalogue.find(p=>p.id===item.productId);if(!product?.enabled)throw new HttpError(409,'This trailer requires a confirmed quote.');
   if(product.revision!==item.revision)throw new HttpError(409,'This configuration has changed. Please review the latest details.');
-  if(product.collection.id!==input.collectionId)throw new HttpError(409,'These trailers cannot use the selected collection location.');
+  const collection=collectionOptions(product).find(c=>c.id===input.collectionId);if(!collection)throw new HttpError(409,'These trailers cannot use the selected collection location.');
   if(product.stock!==null&&product.stock<item.quantity)throw new HttpError(409,'The requested quantity is no longer available.');
   const ids=new Set(item.optionIds);if(ids.size!==item.optionIds.length)throw new HttpError(400,'An option was selected more than once.');
   const options=item.optionIds.map(id=>{const opt=product.options.find(o=>o.id===id);if(!opt)throw new HttpError(400,'An option is no longer available.');if(opt.excludes.some(id=>ids.has(id)))throw new HttpError(400,'These options cannot be combined.');return opt;});
-  const totalCents=(product.priceCents+options.reduce((s,o)=>s+o.priceCents,0)+product.collection.feeCents)*item.quantity;
+  const totalCents=(product.priceCents+options.reduce((s,o)=>s+o.priceCents,0)+collection.feeCents)*item.quantity;
   let dueCents=totalCents;
   if(input.paymentMode==='deposit'){
    if(product.deposit.type==='none')throw new HttpError(409,'Deposit payment is not available for this configuration.');
    dueCents=product.deposit.type==='percent'?Math.round(totalCents*product.deposit.basisPoints/10000):product.deposit.cents*item.quantity;
    if(dueCents<=0||dueCents>=totalCents)throw new HttpError(409,'The approved deposit rule is invalid for this configuration.');
   }
-  return {productId:product.id,name:product.name,revision:product.revision,quantity:item.quantity,requirements:item.requirements,basePriceCents:product.priceCents,options,collection:product.collection,totalCents,dueCents,leadTime:product.leadTime,specifications:product.specifications};
+  return {productId:product.id,name:product.name,revision:product.revision,quantity:item.quantity,requirements:item.requirements,basePriceCents:product.priceCents,options,collection,totalCents,dueCents,leadTime:product.leadTime,specifications:product.specifications};
  });
  const totalCents=lines.reduce((s,l)=>s+l.totalCents,0),dueCents=lines.reduce((s,l)=>s+l.dueCents,0);
  if(totalCents!==input.expectedTotalCents)throw new HttpError(409,'The total has changed. Please review your configuration.');

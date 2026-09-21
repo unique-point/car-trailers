@@ -2,7 +2,7 @@ export type Product = {
  id: string; slug: string; name: string; category: string; description: string;
  images: string[]; pictured: string[]; mode: 'quote' | 'purchase';
  priceCents: number | null; specifications: Record<string,string>; options: Option[];
- stock: number | null; leadTime: string | null; revision: number;
+ stock: number | null; leadTime: string | null; revision: number; model3dUrl?:string;
 };
 export type Option = { id:string; name:string; priceCents:number; excludes:string[] };
 export const categories = [

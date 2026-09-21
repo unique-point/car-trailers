@@ -1,3 +1,7 @@
+# Current storefront design
+
+The September 21 release uses self-hosted Poppins and matches the observed reference header, promotion band, four-slide hero, category strip, product cards, tabbed detail layout and cart drawer. The approved lime/yellow palette, company identity, illustrations and original text remain. See `src/styles/storefront.css`. Earlier design notes below describe the initial version.
+
 # Visual direction
 
 A photographic industrial storefront with a strong charcoal wordmark, yellow-green actions and spacious product presentation. The headquarters banner is a separate, uninterrupted image beneath the main heading so its lettering and central trailer remain readable.

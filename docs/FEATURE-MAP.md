@@ -1,3 +1,7 @@
+# Current reference-parity release
+
+The September 21 repair supersedes the initial mapping below. See [REFERENCE-PARITY-2026-09-21.md](REFERENCE-PARITY-2026-09-21.md) for the verified additions, deployment evidence and remaining business dependencies.
+
 # Functional reference map
 
 Reference review used public HTML and accessible storefront pages. No enquiries or transactions were sent to the reference business. It does not establish private backend behaviour.

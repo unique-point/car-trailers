@@ -1,0 +1,11 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import CategoryRail from '../../components/CategoryRail.astro';
+import Catalogue from '../../components/Catalogue.astro';
+import {ranges,rangeAliases} from '../../data/storefront';
+export const prerender=true;
+export function getStaticPaths(){return [...ranges.map(range=>({params:{slug:range.slug},props:{range}})),...Object.entries(rangeAliases).filter(([slug])=>!ranges.some(r=>r.slug===slug)).map(([slug,target])=>({params:{slug},props:{range:ranges.find(r=>r.slug===target)!}}))];}
+const {range}=Astro.props;
+if(Astro.params.slug!==range.slug)return Astro.redirect(`/product-category/${range.slug}/`,301);
+---
+<Layout title={range.name} description={`Explore ${range.name.toLowerCase()} and discuss the right configuration for your requirements.`}><div class="shop-category-strip"><div class="wrap"><CategoryRail compact/></div></div><section class="catalogue-title wrap"><div class="breadcrumbs"><a href="/">Home</a><span>/</span><a href="/shop/">Trailers</a><span>/</span><span>{range.name}</span></div><h1>{range.name}</h1></section><Catalogue ids={range.ids} range={range.name}/></Layout>

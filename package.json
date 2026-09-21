@@ -7,18 +7,20 @@
     "node": ">=22.12.0"
   },
   "scripts": {
-    "dev": "astro dev --host 0.0.0.0 --port 4173",
+    "dev": "node scripts/dev.mjs --host 0.0.0.0 --port 4173",
     "build": "astro build",
     "preview": "wrangler dev",
     "check": "astro check",
     "test": "node --import tsx --test tests/*.test.ts",
     "db:local": "wrangler d1 migrations apply DB --local",
     "deploy": "wrangler deploy",
-    "images": "node scripts/images.mjs"
+    "images": "node scripts/images.mjs",
+    "test:ui": "node --test tests/storefront-dom.mjs"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.10",
     "@astrojs/cloudflare": "^14.3.1",
+    "@fontsource/poppins": "^5.3.0",
     "astro": "^7.3.2",
     "jose": "^6.2.12",
     "stripe": "^22.6.2",
@@ -28,8 +30,11 @@
   "devDependencies": {
     "@cloudflare/workers-types": "^5.20260910.1",
     "@types/node": "^22.20.2",
+    "esbuild": "^0.28.2",
+    "jsdom": "^30.1.0",
     "sharp": "^0.35.4",
     "tsx": "^4.23.13",
+    "vite": "^8.3.0",
     "wrangler": "^4.131.0"
   }
 }

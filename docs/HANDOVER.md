@@ -1,22 +1,16 @@
 # Deployment and operation
 
-## Connections to finish
+## Current deployment
 
-The target is `unique-point/car-trailers`. The connected GitHub account is `lead0007`; organisation installation and repository write access are now confirmed. The existing repository was empty before this source submission. Work is submitted on `build/car-trailers-storefront` for review. No replacement repository has been created.
+The existing repository is `unique-point/car-trailers`. The deployed review domain is https://www.car-trailers.com.au, backed by the Cloudflare Worker `car-trailers-australia-preview`. GitHub write access and the existing deployment connection have been verified. Do not ask the owner to repeat those setup steps.
 
-The user confirms the domain is on Cloudflare. No authenticated Cloudflare account, existing Pages/Workers application, zone configuration, Stripe account or transactional mail account has been inspected. Do not claim any deployment or DNS change is complete.
+The current source-to-release path is `.github/workflows/publish-review-domain.yml`: validate and build `main`, generate `wrangler.release.json` with `scripts/production-review-config.mjs`, apply D1 migrations, deploy the compiled Astro Worker and check the customer routes. Existing credentials are stored in the GitHub `preview` environment. The release script owns the already approved custom domain routes. Runtime flags for commerce, enquiries, notifications and indexing remain false.
 
-## Preview deployment
+See `docs/REFERENCE-PARITY-2026-09-21.md` for the current visual and customer-journey repair. The domain is a review storefront, not a claim that real-money transactions are enabled.
 
-1. Inspect the owner's existing Cloudflare project and domain configuration. This implementation targets Workers through the current Astro adapter. If an existing Pages application is in use, document a migration proposal before modifying it.
-2. Create or select a dedicated preview D1 database. Apply `migrations/0001_commerce.sql`. Enable Cloudflare Access for the entire preview hostname and disable indexing.
-3. In GitHub, create the `preview` environment. Set `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID` as environment secrets. Grant the token only the Worker and D1 permissions needed for this deployment.
-4. Set `CLOUDFLARE_CONFIG_JSON` as an environment variable. It supplies the confirmed Worker name, HTTPS preview origin, preview D1 ID, any existing session KV binding and Workers route settings. See `scripts/deployment-config.mjs` for allowed fields. No credentials belong in this JSON.
-5. Configure Worker runtime secrets with the Cloudflare dashboard or `wrangler secret put`. GitHub deployment secrets and Worker runtime secrets are different settings.
-6. Run the Validate workflow, then the explicit Deploy workflow for preview. Review the terminal deployment result and check the deployed URL, API responses, database schema, logs and Access policy.
-7. Connect a Stripe test key and test webhook endpoint `/api/stripe/webhook`. Enable test commerce only with synthetic records in the preview database. Conduct the remaining real Stripe test scenarios in `VALIDATION.md`.
+## Remaining provider connections
 
-Do not reuse the placeholder ID in `wrangler.jsonc`. The release validation command rejects it. Never put production Stripe keys in preview; the backend rejects non-test secret keys outside production.
+Stripe account checkout/webhook verification, outgoing enquiry notification delivery and production Turnstile configuration are not established by a successful website deployment. Connect and test these securely before opening sales. Do not request tokens or passwords in chat.
 
 ## Production
 
@@ -46,7 +40,7 @@ The live commercial record is validated by `commercialSchema` in `src/lib/pricin
 
 Browser checkout always supplies the selected revision and displayed total. The server recalculates from the current D1 record; mismatches require customer review. The database also checks the commercial revision inside the stock reservation transaction. Customer-submitted prices are never used as authority.
 
-Current supported fulfilment is an approved collection location per commercial product. Mixed locations and unconfirmed delivery remain quote-only. Collection fees and extras form part of each configured line's deposit basis. Fixed deposits apply per trailer; percentages are stored as integer basis points. These rules must be explicitly approved by the business. Only GST-inclusive AUD configurations are accepted in this release. Other tax treatments need a deliberate implementation change.
+Current supported fulfilment is an approved collection location per commercial product, with an optional `collections` array for additional pickup locations and their fees. Mixed locations and unconfirmed delivery remain quote-only. Collection fees and extras form part of each configured line's deposit basis. Fixed deposits apply per trailer; percentages are stored as integer basis points. These rules must be explicitly approved by the business. Only GST-inclusive AUD configurations are accepted in this release. Other tax treatments need a deliberate implementation change.
 
 ## Payment operations
 
@@ -71,5 +65,5 @@ Inspect Cloudflare errors and the staff audit/notification views. Pending outbox
 - Approved product/variant schedule, image-to-SKU mapping, specifications, prices, inclusions and available stock or made-to-order lead times.
 - Deposit and balance rules, GST treatment, collection locations/fees, freight policy and custom-order handling.
 - Trading/contact details, ABN where applicable, warranty, purchase, cancellation, returns and privacy terms.
-- Cloudflare project access, Stripe test/production connection, approved staff accounts, mail sender and controlled test recipient.
+- Stripe test/production connection, approved staff accounts, mail sender and controlled test recipient. Existing Cloudflare deployment access is already working.
 - Approved analytics and Search Console identifiers. No analytics property has been connected and no live measurement is claimed.

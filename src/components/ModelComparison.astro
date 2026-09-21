@@ -1,0 +1,7 @@
+---
+import {products,type Product} from '../data/catalogue';
+import Picture from './Picture.astro';
+const {product:p}=Astro.props as {product:Product};
+const models=[p,...products.filter(x=>x.id!==p.id).sort((a,b)=>Number(b.category===p.category)-Number(a.category===p.category)).slice(0,3)];
+---
+<section class="section model-comparison"><div class="section-heading"><div><p class="eyebrow">MODEL COMPARISON</p><h2>Compare the layouts.</h2></div><p class="section-description">The current design is highlighted. Compare the format before confirming the final specification.</p></div><div class="table-scroll"><table class="model-table"><thead><tr><th scope="col">Trailer design</th>{models.map((m,i)=><th scope="col" class:list={{'current-model':i===0}}><a href={`/trailers/${m.slug}/`}><Picture name={m.images[0]} alt={m.name}/><small>{i===0?'CURRENT DESIGN':'COMPARE DESIGN'}</small><h3>{m.name}</h3></a><p data-price-for={m.id}>Request a quote</p>{i>0&&<a class="text-link" href={`/trailers/${m.slug}/`}>View this design →</a>}</th>)}</tr></thead><tbody>{['Layout shown','Axle layout shown','Dimensions & ratings','Availability'].map((name,index)=><tr><th scope="row">{name}</th>{models.map((m,i)=><td class:list={{'current-model':i===0}}>{index===0?m.pictured[0]:index===1?m.pictured.find(x=>x.includes('axle'))||'Confirm with quote':'Confirm with quote'}</td>)}</tr>)}</tbody></table></div><p class="image-note">Pictures show design concepts. A written quote confirms the exact specification and included equipment.</p></section>
