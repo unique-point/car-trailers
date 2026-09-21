@@ -1,3 +1,7 @@
+# Current release validation
+
+The September 21 reference-parity repair passes Astro check, the Cloudflare production build, 20 backend tests and seven built-page DOM interaction tests. See [REFERENCE-PARITY-2026-09-21.md](REFERENCE-PARITY-2026-09-21.md) for the customer-journey scope and browser evidence. Earlier records below remain historical.
+
 # Verification record
 
 ## Completed

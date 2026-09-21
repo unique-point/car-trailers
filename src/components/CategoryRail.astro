@@ -1,0 +1,6 @@
+---
+import {ranges} from '../data/storefront';
+import Picture from './Picture.astro';
+const {compact=false}=Astro.props;
+---
+<div class:list={['category-rail',{compact}]} aria-label="Trailer categories">{ranges.filter(r=>r.image).map(r=><a href={`/product-category/${r.slug}/`}><span><Picture name={r.image!} alt={r.name}/></span><strong>{r.name}</strong></a>)}</div>

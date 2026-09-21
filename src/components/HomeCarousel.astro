@@ -1,0 +1,9 @@
+---
+import {slides} from '../data/storefront';
+import Picture from './Picture.astro';
+---
+<section class="home-carousel" aria-label="Trailer range highlights" aria-roledescription="carousel" data-carousel>
+ {slides.map((slide,i)=><article class="hero-slide" data-slide hidden={i!==0} aria-roledescription="slide" aria-label={`${i+1} of ${slides.length}`}><div class="hero-slide-copy"><p class="eyebrow">{slide.eyebrow}</p>{i===0?<h1>{slide.line}<span>{slide.accent}</span></h1>:<h2>{slide.line}<span>{slide.accent}</span></h2>}<p>{slide.text}</p><div class="hero-buttons"><a class="button" href={slide.primary[1]}>{slide.primary[0]} <span aria-hidden="true">→</span></a><a class="button outline light" href={slide.secondary[1]}>{slide.secondary[0]}</a></div></div><figure><Picture name={slide.image} alt={`${slide.eyebrow.toLowerCase()} design illustration`} hero={i===0}/><figcaption>Design illustration</figcaption></figure></article>)}
+ <div class="carousel-controls"><div class="slide-dots">{slides.map((_,i)=><button type="button" data-slide-to={i} aria-label={`Show slide ${i+1}`} aria-pressed={i===0}></button>)}</div><button data-slide-prev aria-label="Previous slide">←</button><button data-slide-next aria-label="Next slide">→</button><button data-slide-pause aria-label="Pause slideshow">Ⅱ</button></div>
+ <div class="hero-progress" aria-hidden="true"><span></span></div>
+</section>

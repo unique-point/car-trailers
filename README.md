@@ -4,13 +4,15 @@ Astro 7 and TypeScript storefront with a Cloudflare Worker, D1 commerce storage 
 
 ## Current release status
 
-This is a tested pre-launch implementation for the existing GitHub repository. Organisation access is confirmed and the source is being submitted on a review branch. It has not been deployed to the owner's Cloudflare account. The storefront uses eight provisional design families and thirteen separate trailer illustrations plus the approved headquarters banner. These are enquiry designs, not confirmed saleable SKUs.
+The review storefront is deployed through the existing Cloudflare Worker at https://www.car-trailers.com.au. The `publish-review-domain.yml` workflow publishes `main` using the existing GitHub environment credentials. GitHub and Cloudflare access do not need to be set up again.
 
-Online selling, public enquiry capture, outgoing notifications and indexing are disabled by default. There are no invented commercial prices, ratings, stock levels, address, warranty periods or deposit policies in the public catalogue. The test suite uses explicitly labelled synthetic fixtures and a mocked Stripe HTTP service. It does not establish that the owner's Stripe account or Cloudflare deployment works.
+The September 2026 reference-parity update adds a four-slide homepage, dropdown navigation, expanded category pages, filters, product detail tabs, model comparisons, shared cart drawer and contextual enquiry forms. See `docs/REFERENCE-PARITY-2026-09-21.md` for evidence and remaining dependencies.
+
+The catalogue contains eight provisional design families with thirteen individual illustrations and the approved headquarters banner. Approved commercial data, provider connections and actual operating details are still needed before sales open. Commerce, enquiry delivery, notifications and indexing remain disabled in the review environment. The site does not copy the reference business's catalogue, prices, addresses, endorsements or commercial policies.
 
 ## Development
 
-Use Node 24 and npm. `npm ci`, `npm run dev`, `npm run check`, `npm test`, and `npm run build` are the normal commands. `npm run images` regenerates responsive WebP derivatives from the preserved PNG masters. Copy `.env.example` to `.dev.vars` for local settings. Never commit credentials or real customer data.
+Use Node 24 and npm. `npm ci`, `npm run dev`, `npm run check`, `npm test`, and `npm run build` are the normal commands. After building, run `npm run test:ui` for storefront interaction regression tests. `npm run images` regenerates responsive WebP derivatives from the preserved PNG masters. Copy `.env.example` to `.dev.vars` for local settings. Never commit credentials or real customer data.
 
 The Astro Cloudflare adapter uses Node to prerender static pages, and Workers for live endpoints. This avoids making static builds dependent on a running local Workers service. The finished Worker and static assets are under `dist/server` and `dist/client`. Wrangler receives the generated deployment configuration automatically.
 
@@ -36,4 +38,8 @@ Apply D1 migrations to a disposable local database with `npm run db:local`. Use 
 - `docs/VALIDATION.md`: actual verification and limitations.
 - `docs/DESIGN.md`: visual system and responsive decisions.
 
-GitHub Actions validate the source on pushes and pull requests. Deployment is an explicit workflow against a named GitHub environment with the real Cloudflare configuration. It does not change DNS automatically. Review and preserve existing Pages/Workers resources before linking the production hostname.
+GitHub Actions validate the source on pushes and pull requests. Pushing verified changes to `main` triggers the existing review-domain deployment. Its release configuration includes the approved custom domain bindings. Preserve the existing deployment secrets and commercial launch gates.
+
+## Managed UI preview
+
+The supervised preview passes `--strictPort` to `scripts/dev.mjs`. This serves the validated `dist/client` build through Vite without trying to contact Cloudflare from the restricted preview runtime. Build first. It is a UI-only preview: real APIs are verified on the deployed Worker, and backend rules are covered by the separate commerce tests. Regular `npm run dev` continues to use Astro and Cloudflare bindings. Do not rebuild while capturing the UI preview; a rebuild replaces its asset directory.
