@@ -45,7 +45,7 @@ This pass inspected the live King Kong homepage, shop, car-transporter detail pa
 - 20 backend tests pass (pricing, deposits, inventory reservations, webhook replay/signatures, refunds, balances, enquiry gates and staff identity).
 - Seven DOM interaction tests pass against the built pages: combined filters/reset, category scope/empty states, keyboard tabs/carousel, gallery-to-cart handoff, invalid saved rows/quantity synchronisation, closed enquiry gate/context, and approved pickup-fee selection.
 - Initial desktop browser visual review verified the new header, promotion band, hero composition and quick actions. The supervised preview later lost its connection during a build; DOM regression tests were used before deployment, with live-domain browser checks after publishing.
-- CI and deployment references are recorded in the final release note after their results are verified.
+- CI, deployment and live-browser evidence are recorded in [RELEASE-2026-09-21.md](RELEASE-2026-09-21.md).
 
 ## Source locations
 
